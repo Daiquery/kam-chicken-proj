@@ -1,0 +1,55 @@
+header {
+    border-color: black;
+    background-color: black;
+    background: linear-gradient(360deg, rgba(0,0,0,1) 42%, rgba(107,107,107,1) 100%);
+  
+  }
+  
+  
+  .heading ul {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+  }
+  
+  .heading ul li {
+    padding: 20px 15px 20px;
+    
+  }
+  
+  .heading ul li a {
+    color: white;  
+    text-decoration: none;
+  }
+  
+  .heading ul li a:hover {
+    color: orange;
+  }
+  
+  .site {
+    margin: 50px;
+    
+  }
+  
+  body {
+    background-image: url("https://t4.ftcdn.net/jpg/04/19/02/13/240_F_419021382_hxcp2W1OGryacyy9Peka6Uxixb7duZbS.jpg");
+    background-repeat: repeat;
+    background-size: 15%;
+    background-color: black;
+  }
+  
+  .carocontainer {
+  border-style: solid;
+    border-width: 10px;
+  }
+  
+  .columnheader {
+    background-color: red;
+    margin-top: 15px;
+  }
+
+.food {
+    border-style: solid;
+    border-width: 5px;
+    border-color: orange;
+}
