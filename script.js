@@ -198,7 +198,7 @@ function orderChicken(){
 
 function purchaseChicken(){
     localStorage.clear();
-    document.location = "https://daiquery.github.io/kam-chicken-proj/success.html";
+    document.location = "https://daiquery.github.io/kam-chicken-proj/pages/success.html";
 
 }
 
