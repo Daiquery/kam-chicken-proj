@@ -55,9 +55,10 @@ if(typeof(retrievedChicken) === "string"){
 if(typeof(retrievedList) === "string"){
      if(!(list === null)){
            list.innerHTML = retrievedList;
+           orderBtn.classList.remove("disabled");
+
 
      }
-    orderBtn.classList.remove("disabled");
     if(!(finalOrder === null)){
         finalOrder.innerHTML = retrievedOrder;     
     }
