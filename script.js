@@ -1,28 +1,61 @@
 const tax = 0.04;
+console.log(localStorage)
 var orderBtn = document.getElementById("orderBtn");
 var orderModal = document.getElementById("orderModalBody");
+var localStorage = window.localStorage;
+var retrievedChicken = localStorage.getItem("allchicken");
+var retrievedList = localStorage.getItem("chickenList");
+var list = document.getElementById("list");
 
-const chicken = {
-    "fireball": {
-        name: "Fireball Chicken",
-        price: 12.99,
-        quantity: 0
-    },
-    "buttermilk": {
-        name: "Buttermilk Chicken",
-        price: 11.99,
-        quantity: 0
-    },
-    "1000season": {
-        name: "1000 Season Chicken",
-        price: 14.14,
-        quantity: 0
+$(".modal").on("hidden.bs.modal", clearModal);
+
+
+if(typeof(retrievedChicken) === "string"){
+    var chicken = JSON.parse(retrievedChicken);
+} else {
+    var chicken = {
+        "fireball": {
+            name: "Fireball Chicken",
+            price: 12.99,
+            quantity: 0
+        },
+        "buttermilk": {
+            name: "Buttermilk Chicken",
+            price: 11.99,
+            quantity: 0
+        },
+        "the1000season": {
+            name: "1000 Season Chicken",
+            price: 14.14,
+            quantity: 0
+        },
+        "raw": {
+            name: "Raw Chicken",
+            price: 4.99,
+            quantity: 0
+        },
+        "burnt": {
+            name: "Burnt Chicken",
+            price: 6.00,
+            quantity: 0
+        },
+        "bootstrap": {
+            name: "Bootstrap Template Chicken",
+            price: 13.37,
+            quantity: 0
+        }
     }
-};
+
+    localStorage.setItem('allchicken', JSON.stringify(chicken));
+
+}
+
+if(typeof(retrievedList) === "string"){
+    list.innerHTML = retrievedList;
+    orderBtn.classList.remove("disabled");
+}
 
 function createRowComponent(type, chickenName, chickenPrice, chickenQuantity) {
-    var list = document.getElementById("list");
-
     row = document.createElement("div");
     row.className = `row ${type}`;
 
@@ -82,6 +115,9 @@ function addChicken(type) {
         chicken[type].quantity++;
         createRowComponent(type, chicken[type].name, chicken[type].price, chicken[type].quantity);
         console.log(chicken[type]);
+        localStorage.setItem('allchicken', JSON.stringify(chicken));
+        localStorage.setItem('chickenList', list.innerHTML);
+
     } else {
         chicken[type].quantity++;
         // for (let i = 0; i < matchingChicken.children.length; i++) {
@@ -89,6 +125,11 @@ function addChicken(type) {
         //   }
 
         matchingChicken.children[2].firstChild.textContent = `${chicken[type].quantity}`;
+
+        localStorage.setItem('allchicken', JSON.stringify(chicken));
+        localStorage.setItem('chickenList', list.innerHTML);
+
+
 
 
     }
@@ -99,18 +140,13 @@ function addChicken(type) {
 function removeChicken(type) {
     var chickenQuantity = 0;
     matchingChicken = document.querySelector(`.${type}`);
-
-
-    if (matchingChicken === null) {
-        chicken[type].quantity--;
-    } else {
         chicken[type].quantity--;
 
         matchingChicken.children[2].firstChild.textContent = `${chicken[type].quantity}`;
     
 
         for (i = 0; i < Object.keys(chicken).length; i++) {
-            chickenQuantity = chicken["1000season"].quantity + chicken["buttermilk"].quantity + chicken["fireball"].quantity;
+            chickenQuantity = chicken["the1000season"].quantity + chicken["buttermilk"].quantity + chicken["fireball"].quantity + chicken["raw"].quantity + chicken["burnt"].quantity + chicken["bootstrap"].quantity;
             if (chickenQuantity === 0) {
                 orderBtn.classList.add("disabled");
                 matchingChicken.remove();
@@ -118,8 +154,13 @@ function removeChicken(type) {
             }
         }
 
+        localStorage.setItem("allchicken", JSON.stringify(chicken));
+        localStorage.setItem('chickenList', list.innerHTML);
 
-    }
+
+
+
+    
 
     
 
@@ -145,7 +186,7 @@ function orderChicken(){
     }
 
     chickenPriceItem = document.createElement("h6");
-    chickenPriceItem.textContent = `Total Price: ${chickenPrice}`;
+    chickenPriceItem.textContent = `Total Price: $${chickenPrice.toFixed(2)}`;
     orderModal.children[0].append(chickenPriceItem);
 
     
@@ -155,6 +196,11 @@ function orderChicken(){
 
 }
 
+function purchaseChicken(){
+    localStorage.clear();
+    document.location = "https://daiquery.github.io/kam-chicken-proj/success.html";
+
+}
 
 function clearModal(){
     orderModal.children[0].innerHTML = "";
