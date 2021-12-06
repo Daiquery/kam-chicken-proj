@@ -11,6 +11,27 @@
 </head>
 
 <body>
+    <!-- order modal -->
+<div class="modal fade" onclick="clearModal()" data-quantity="2" id="orderModal" tabindex="-1" role="dialog" aria-labelledby="orderModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Confirm</h5>
+          <button type="button" onclick="clearModal()" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" id="orderModalBody">
+          <div></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" onclick="clearModal()" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-success">Pay Now</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
     <header class="heading">
         <ul>
 
@@ -76,75 +97,14 @@
         <div class="container" style="background-color: black; border-style: solid; border-color: orange;">
             <div class="row">
                 <div class="col-lg-12 d-flex justify-content-center">
-                    <h2 style="color: white;">Shopping List</h2>
+                    <h2 style="color: white;">Cart</h2>
                 </div>
-                <div id="list">
-                <div class="row">
-                    <div class="col-md-3">
-                        <h5>Fireball Chicken</h5>
-                    </div>
-                    <div class="col-md-3">
-                        <p>$12.99</p>
-                    </div>
-                    <div class="col-md-3">
-                        <p>1</p>
-                    </div>
-                    <div class="col-md-3 d-flex">
-                        <button class="btn btn-sm btn-light" style="height: 30px;">+</button>
-                        <button class="btn btn-sm btn-light" style="height: 30px;">-</button>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-3">
-                        <h5>Fireball Chicken</h5>
-                    </div>
-                    <div class="col-md-3">
-                        <p>$12.99</p>
-                    </div>
-                    <div class="col-md-3">
-                        <p>1</p>
-                    </div>
-                    <div class="col-md-3 d-flex">
-                        <button class="btn btn-sm btn-light" style="height: 30px;">+</button>
-                        <button class="btn btn-sm btn-light" style="height: 30px;">-</button>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-3">
-                        <h5>Fireball Chicken</h5>
-                    </div>
-                    <div class="col-md-3">
-                        <p>$12.99</p>
-                    </div>
-                    <div class="col-md-3">
-                        <p>1</p>
-                    </div>
-                    <div class="col-md-3 d-flex">
-                        <button class="btn btn-sm btn-light" style="height: 30px;">+</button>
-                        <button class="btn btn-sm btn-light" style="height: 30px;">-</button>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-3">
-                        <h5>Fireball Chicken</h5>
-                    </div>
-                    <div class="col-md-3">
-                        <p>$12.99</p>
-                    </div>
-                    <div class="col-md-3">
-                        <p>1</p>
-                    </div>
-                    <div class="col-md-3 d-flex">
-                        <button class="btn btn-sm btn-light" style="height: 30px;">+</button>
-                        <button class="btn btn-sm btn-light" style="height: 30px;">-</button>
-                    </div>
-                </div>
-                </div>
+                <div id="list"></div>
                 
             </div>
             <div class="row">
                 <div class="col-md-12 d-flex justify-content-center">
-                    <button class="btn btn-light">Order</button>
+                    <button id="orderBtn" onclick="orderChicken()" class="btn btn-light disabled" data-toggle="modal" data-target="#orderModal">Order</button>
                 </div>
             </div>
 
