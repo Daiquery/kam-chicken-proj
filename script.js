@@ -53,9 +53,15 @@ if(typeof(retrievedChicken) === "string"){
 }
 
 if(typeof(retrievedList) === "string"){
-    list.innerHTML = retrievedList;
+     if(!(list === null)){
+           list.innerHTML = retrievedList;
+
+     }
     orderBtn.classList.remove("disabled");
-    finalOrder.innerHTML = retrievedOrder;
+    if(!(finalOrder === null)){
+        finalOrder.innerHTML = retrievedOrder;     
+    }
+    
 }
 
 function createRowComponent(type, chickenName, chickenPrice, chickenQuantity) {
