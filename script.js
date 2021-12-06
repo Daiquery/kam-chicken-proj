@@ -5,6 +5,8 @@ var orderModal = document.getElementById("orderModalBody");
 var localStorage = window.localStorage;
 var retrievedChicken = localStorage.getItem("allchicken");
 var retrievedList = localStorage.getItem("chickenList");
+var retrievedOrder = localStorage.getItem("finalOrder");
+var finalOrder = document.getElementById("order");
 var list = document.getElementById("list");
 
 $(".modal").on("hidden.bs.modal", clearModal);
@@ -53,6 +55,7 @@ if(typeof(retrievedChicken) === "string"){
 if(typeof(retrievedList) === "string"){
     list.innerHTML = retrievedList;
     orderBtn.classList.remove("disabled");
+    finalOrder.innerHTML = retrievedOrder;
 }
 
 function createRowComponent(type, chickenName, chickenPrice, chickenQuantity) {
@@ -197,7 +200,9 @@ function orderChicken(){
 }
 
 function purchaseChicken(){
-    localStorage.clear();
+    localStorage.setItem('finalOrder', orderModal.children[0].innerHTML);
+
+    // localStorage.clear();
     document.location = "https://daiquery.github.io/kam-chicken-proj/pages/success.html";
 
 }
